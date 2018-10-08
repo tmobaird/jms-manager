@@ -5,9 +5,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class BaseController {
+public class QueueController {
 
     @GetMapping("/")
     public String index(Model m) {
@@ -16,8 +18,14 @@ public class BaseController {
     }
 
     @PostMapping("/queue")
-    public String show(@ModelAttribute SimpleQueue queue, Model m) {
+    public ModelAndView create(@ModelAttribute SimpleQueue queue, Model m) {
         m.addAttribute("queue", queue);
-        return "base/result";
+        return new ModelAndView(String.format("redirect:/queue?name=%s", queue.getName()));
+    }
+
+    @GetMapping("/queue")
+    public String show(@RequestParam(value = "name", defaultValue = "Test") String name, Model m) {
+        m.addAttribute("name", name);
+        return "base/show";
     }
 }
