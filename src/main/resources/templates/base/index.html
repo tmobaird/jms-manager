@@ -1,0 +1,15 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>JMS Manager | Welcome</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+    <div><h1>Welcome to the JMS Mananger</h1></div>
+    <div>Manage a queue. Enter Name Below:</div>
+    <form action="#" method="post" name="queue" th:action="@{/queue}" th:object="${queue}">
+        <input type="text" name="name" th:field="*{name}">
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
