@@ -23,7 +23,7 @@ public class QueueInfo {
         this.name = name;
     }
 
-    int getMessagesCount() {
+    public int getMessagesCount() {
         return messagesCount;
     }
 
@@ -31,7 +31,7 @@ public class QueueInfo {
         this.messagesCount = messagesCount;
     }
 
-    int getQueueSize() {
+    public int getQueueSize() {
         return queueSize;
     }
 

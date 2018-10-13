@@ -6,6 +6,12 @@
 </head>
 <body>
     <div><h1>Welcome to the JMS Mananger</h1></div>
-    <div th:text="'You entered queue ' + ${queue.name}">Queue Name</div>
+    <div th:text="'Queue: ' + ${queue.name}">Queue Name</div>
+    <div th:text="'Number of messages: ' + ${queue.messagesCount}">N/A</div>
+    <div th:text="'Queue Size: ' + ${queue.queueSize} + ' KB'">N/A</div>
+    <form action="#" method="post" th:action="@{/queue/}">
+        <input type="submit" value="Purge">
+    </form>
+    <button>Move Messages</button>
 </body>
 </html>

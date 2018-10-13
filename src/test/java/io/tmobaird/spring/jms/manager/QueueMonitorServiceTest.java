@@ -1,5 +1,7 @@
 package io.tmobaird.spring.jms.manager;
 
+import io.tmobaird.spring.jms.manager.browser.callbacks.MessageCountCallback;
+import io.tmobaird.spring.jms.manager.browser.callbacks.QueueSizeCallback;
 import org.junit.Test;
 import org.mockito.Mockito;
 import org.springframework.jms.core.JmsTemplate;

@@ -1,15 +1,18 @@
-package io.tmobaird.spring.jms.manager;
+package io.tmobaird.spring.jms.manager.browser.callbacks;
 
 import org.springframework.jms.core.BrowserCallback;
 
 import javax.jms.JMSException;
 import javax.jms.QueueBrowser;
 import javax.jms.Session;
+import java.util.Collections;
 
-class QueueSizeCallback implements BrowserCallback<Integer> {
+public class MessageCountCallback implements BrowserCallback<Integer> {
 
     @Override
     public Integer doInJms(Session session, QueueBrowser browser) throws JMSException {
-        return 1;
+        browser.getQueue();
+
+        return Collections.list(browser.getEnumeration()).size();
     }
 }
