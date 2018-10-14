@@ -1,10 +1,11 @@
 package io.tmobaird.spring.jms.manager;
 
+import io.tmobaird.spring.jms.manager.browser.callbacks.MessageCountCallback;
+import io.tmobaird.spring.jms.manager.browser.callbacks.QueueInfoCallback;
 import io.tmobaird.spring.jms.manager.browser.callbacks.QueueSizeCallback;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.stereotype.Service;
-import io.tmobaird.spring.jms.manager.browser.callbacks.MessageCountCallback;
 
 @Service
 public class QueueMonitorService {
@@ -16,12 +17,17 @@ public class QueueMonitorService {
     }
 
     public QueueInfo getQueueInfo(String name) {
-        MessageCountCallback countCallback = new MessageCountCallback();
-        Integer messageCount = template.browse(name, countCallback);
+        QueueInfoCallback callback = new QueueInfoCallback();
+        return template.browse(name, callback);
+    }
 
-        QueueSizeCallback sizeCallback = new QueueSizeCallback();
-        Integer queueSize = template.browse(name, sizeCallback);
+    public Integer getNumberOfMessagesInQueue(String name) {
+        MessageCountCallback callback = new MessageCountCallback();
+        return template.browse(name, callback);
+    }
 
-        return new QueueInfo(name, messageCount, queueSize);
+    public Integer getQueueSize(String name) {
+        QueueSizeCallback callback = new QueueSizeCallback();
+        return template.browse(name, callback);
     }
 }

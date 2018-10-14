@@ -9,7 +9,7 @@ public class QueueInfo {
         this.name = name;
     }
 
-    QueueInfo(String name, int messagesCount, int queueSize) {
+    public QueueInfo(String name, int messagesCount, int queueSize) {
         this.name = name;
         this.messagesCount = messagesCount;
         this.queueSize = queueSize;
