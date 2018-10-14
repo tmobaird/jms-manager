@@ -25,4 +25,9 @@ public class ApiMessagesController {
     public List<TextMessage> index(@PathVariable String queueName) {
         return messageService.getMessages(queueName);
     }
+
+    @GetMapping("/{id}")
+    public String show(@PathVariable String queueName, @PathVariable String id) {
+        return messageService.getMessage(queueName, id).toString();
+    }
 }
