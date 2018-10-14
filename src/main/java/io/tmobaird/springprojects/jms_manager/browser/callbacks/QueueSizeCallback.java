@@ -1,4 +1,4 @@
-package io.tmobaird.spring.jms.manager.browser.callbacks;
+package io.tmobaird.springprojects.jms_manager.browser.callbacks;
 
 import org.springframework.jms.core.BrowserCallback;
 

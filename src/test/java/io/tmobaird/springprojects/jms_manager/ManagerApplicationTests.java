@@ -1,4 +1,4 @@
-package io.tmobaird.spring.jms.manager;
+package io.tmobaird.springprojects.jms_manager;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

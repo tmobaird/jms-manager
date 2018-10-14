@@ -1,7 +1,7 @@
-package io.tmobaird.spring.jms.manager.controllers.api;
+package io.tmobaird.springprojects.jms_manager.controllers.api;
 
-import io.tmobaird.spring.jms.manager.QueueInfo;
-import io.tmobaird.spring.jms.manager.QueueMonitorService;
+import io.tmobaird.springprojects.jms_manager.QueueInfo;
+import io.tmobaird.springprojects.jms_manager.QueueMonitorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

@@ -1,4 +1,4 @@
-package io.tmobaird.spring.jms.manager;
+package io.tmobaird.springprojects.jms_manager;
 
 public class QueueInfo {
     private String name;

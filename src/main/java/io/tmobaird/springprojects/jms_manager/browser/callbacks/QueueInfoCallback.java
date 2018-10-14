@@ -1,6 +1,6 @@
-package io.tmobaird.spring.jms.manager.browser.callbacks;
+package io.tmobaird.springprojects.jms_manager.browser.callbacks;
 
-import io.tmobaird.spring.jms.manager.QueueInfo;
+import io.tmobaird.springprojects.jms_manager.QueueInfo;
 import org.springframework.jms.core.BrowserCallback;
 
 import javax.jms.JMSException;

@@ -1,8 +1,8 @@
-package io.tmobaird.spring.jms.manager;
+package io.tmobaird.springprojects.jms_manager;
 
-import io.tmobaird.spring.jms.manager.browser.callbacks.MessageCountCallback;
-import io.tmobaird.spring.jms.manager.browser.callbacks.QueueInfoCallback;
-import io.tmobaird.spring.jms.manager.browser.callbacks.QueueSizeCallback;
+import io.tmobaird.springprojects.jms_manager.browser.callbacks.MessageCountCallback;
+import io.tmobaird.springprojects.jms_manager.browser.callbacks.QueueInfoCallback;
+import io.tmobaird.springprojects.jms_manager.browser.callbacks.QueueSizeCallback;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.stereotype.Service;
