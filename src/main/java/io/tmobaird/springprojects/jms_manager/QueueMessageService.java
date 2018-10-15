@@ -1,12 +1,11 @@
 package io.tmobaird.springprojects.jms_manager;
 
+import io.tmobaird.springprojects.jms_manager.browser.callbacks.GetMessageCallback;
 import io.tmobaird.springprojects.jms_manager.browser.callbacks.GetMessagesCallback;
-import io.tmobaird.springprojects.jms_manager.browser.callbacks.MessageCallback;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.stereotype.Service;
 
-import javax.jms.TextMessage;
 import java.util.List;
 
 @Service
@@ -18,12 +17,12 @@ public class QueueMessageService {
         this.template = template;
     }
 
-    public List<TextMessage> getMessages(String queueName) {
+    public List<SimpleTextMessage> getMessages(String queueName) {
         return template.browse(queueName, new GetMessagesCallback());
     }
 
-    public TextMessage getMessage(String queueName, String messageId) {
-        MessageCallback callback = new MessageCallback();
+    public SimpleTextMessage getMessage(String queueName, String messageId) {
+        GetMessageCallback callback = new GetMessageCallback();
         return template.browseSelected(queueName, getMessageSelector(messageId), callback);
     }
 

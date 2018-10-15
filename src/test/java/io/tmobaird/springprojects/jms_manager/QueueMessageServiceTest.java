@@ -25,7 +25,7 @@ public class QueueMessageServiceTest {
         when(jmsTemplate.browse(eq("Queue Name"), any(GetMessagesCallback.class)))
                 .thenReturn(new ArrayList<>());
 
-        List<TextMessage> messages = service.getMessages("Queue Name");
+        List<SimpleTextMessage> messages = service.getMessages("Queue Name");
 
         assertEquals(0, messages.size());
     }

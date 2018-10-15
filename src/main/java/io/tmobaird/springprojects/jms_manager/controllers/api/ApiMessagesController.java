@@ -1,6 +1,7 @@
 package io.tmobaird.springprojects.jms_manager.controllers.api;
 
 import io.tmobaird.springprojects.jms_manager.QueueMessageService;
+import io.tmobaird.springprojects.jms_manager.SimpleTextMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,12 +23,12 @@ public class ApiMessagesController {
     }
 
     @GetMapping
-    public List<TextMessage> index(@PathVariable String queueName) {
+    public List<SimpleTextMessage> index(@PathVariable String queueName) {
         return messageService.getMessages(queueName);
     }
 
     @GetMapping("/{id}")
-    public String show(@PathVariable String queueName, @PathVariable String id) {
-        return messageService.getMessage(queueName, id).toString();
+    public SimpleTextMessage show(@PathVariable String queueName, @PathVariable String id) {
+        return messageService.getMessage(queueName, id);
     }
 }
