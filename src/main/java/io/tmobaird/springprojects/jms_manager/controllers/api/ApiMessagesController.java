@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/queue/{queueName}/messages")
+@RequestMapping("/api/queues/{queueName}/messages")
 public class ApiMessagesController {
 
     private QueueMessageService messageService;
@@ -23,18 +23,19 @@ public class ApiMessagesController {
         return messageService.getMessages(queueName);
     }
 
+    @PostMapping
+    public String create(@PathVariable String queueName, @RequestBody SimpleTextMessage message) {
+        return "Creating and adding message: " + message + " to " + queueName;
+    }
+
     @GetMapping("/{id}")
     public SimpleTextMessage show(@PathVariable String queueName, @PathVariable String id) {
         return messageService.getMessage(queueName, id);
     }
 
-    @PostMapping("/move")
-    public String moveAll(@PathVariable String queueName, @RequestBody String destination) {
-        return "Moved Messages from " + queueName + " to " + destination;
-    }
-
-    @PostMapping("/{id}/move")
-    public String move(@PathVariable String queueName, @PathVariable String id, @RequestBody String destination) {
-        return "Moved Message " + id + " from " + queueName + " to " + destination;
+    @DeleteMapping("/{id}")
+    public String destroy(@PathVariable String queueName, @PathVariable String id) {
+        messageService.deleteMessage(queueName, id);
+        return "Deleted Message " + id + " from " + queueName;
     }
 }

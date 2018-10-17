@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.stereotype.Service;
 
+import javax.jms.JMSException;
+import javax.jms.Message;
 import java.util.List;
 
 @Service
@@ -24,6 +26,18 @@ public class QueueMessageService {
     public SimpleTextMessage getMessage(String queueName, String messageId) {
         GetMessageCallback callback = new GetMessageCallback();
         return template.browseSelected(queueName, getMessageSelector(messageId), callback);
+    }
+
+    public void deleteMessage(String queueName, String messageId) {
+        template.setReceiveTimeout(1000);
+
+        Message m = template.receiveSelected(queueName, getMessageSelector(messageId));
+
+        try {
+            m.acknowledge();
+        } catch (JMSException | NullPointerException e) {
+            System.out.println("Should cause a 404 to return");
+        }
     }
 
     private String getMessageSelector(String jmsMessageId) {
