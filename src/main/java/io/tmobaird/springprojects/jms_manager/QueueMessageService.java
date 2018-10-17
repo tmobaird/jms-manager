@@ -31,10 +31,11 @@ public class QueueMessageService {
     public void deleteMessage(String queueName, String messageId) {
         template.setReceiveTimeout(1000);
 
+        // Automatically acknowledges the message
         Message m = template.receiveSelected(queueName, getMessageSelector(messageId));
 
         try {
-            m.acknowledge();
+            System.out.println(String.format("Message with id %s deleted", m.getJMSMessageID()));
         } catch (JMSException | NullPointerException e) {
             System.out.println("Should cause a 404 to return");
         }
