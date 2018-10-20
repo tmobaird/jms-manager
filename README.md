@@ -21,7 +21,7 @@ The application allows for similar abilities that the ActiveMQ web app provides.
 - [x] Get queue size in KB
 - [x] Get all messages in queue
 - [x] Get a single message in queue (by JMS message id)
-- [ ] Create message in queue
+- [x] Create message in queue
 - [x] Delete message in queue
 - [ ] Move message in queue to another queue
 - [ ] Move all messages in queue to another queue
