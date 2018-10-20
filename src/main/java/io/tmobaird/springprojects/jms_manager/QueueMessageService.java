@@ -4,6 +4,7 @@ import io.tmobaird.springprojects.jms_manager.browser.callbacks.GetMessageCallba
 import io.tmobaird.springprojects.jms_manager.browser.callbacks.GetMessagesCallback;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.core.JmsTemplate;
+import org.springframework.jms.support.converter.MessageConverter;
 import org.springframework.stereotype.Service;
 
 import javax.jms.JMSException;
@@ -26,6 +27,12 @@ public class QueueMessageService {
     public SimpleTextMessage getMessage(String queueName, String messageId) {
         GetMessageCallback callback = new GetMessageCallback();
         return template.browseSelected(queueName, getMessageSelector(messageId), callback);
+    }
+
+    public void createMessage(MessageToSend messageToSend) {
+        MessageConverter converter = new MessageToSendConverter();
+        template.setMessageConverter(converter);
+        template.convertAndSend(messageToSend.getDestination(), messageToSend);
     }
 
     public void deleteMessage(String queueName, String messageId) {

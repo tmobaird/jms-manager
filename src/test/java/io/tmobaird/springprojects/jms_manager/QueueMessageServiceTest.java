@@ -12,7 +12,7 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 public class QueueMessageServiceTest {
 
@@ -44,5 +44,20 @@ public class QueueMessageServiceTest {
 
         assertEquals("MessageID:123", message.getId());
         assertEquals("This is some text", message.getText());
+    }
+
+    @Test
+    public void create_CallsConvertAndSendOnTemplate() {
+        JmsTemplate jmsTemplate = Mockito.mock(JmsTemplate.class);
+        QueueMessageService service = new QueueMessageService(jmsTemplate);
+
+        MessageToSend messageToSend = new MessageToSend();
+        messageToSend.setDestination("QueueName");
+        messageToSend.setText("This is the text of the message");
+
+        service.createMessage(messageToSend);
+
+        verify(jmsTemplate, times(1))
+                .convertAndSend(eq("QueueName"), eq(messageToSend));
     }
 }

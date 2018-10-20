@@ -1,6 +1,8 @@
 package io.tmobaird.springprojects.jms_manager;
 
-public class SimpleTextMessage {
+import java.io.Serializable;
+
+public class SimpleTextMessage implements Serializable {
     private String id;
     private String correlationId;
     private String text;

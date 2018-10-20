@@ -1,5 +1,6 @@
 package io.tmobaird.springprojects.jms_manager.controllers.api;
 
+import io.tmobaird.springprojects.jms_manager.MessageToSend;
 import io.tmobaird.springprojects.jms_manager.QueueMessageService;
 import io.tmobaird.springprojects.jms_manager.SimpleTextMessage;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,8 +25,10 @@ public class ApiMessagesController {
     }
 
     @PostMapping
-    public String create(@PathVariable String queueName, @RequestBody SimpleTextMessage message) {
-        return "Creating and adding message: " + message + " to " + queueName;
+    public String create(@PathVariable String queueName, @RequestBody MessageToSend message) {
+        message.setDestination(queueName);
+        messageService.createMessage(message);
+        return "Message Created";
     }
 
     @GetMapping("/{id}")
